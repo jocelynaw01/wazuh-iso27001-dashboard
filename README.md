@@ -18,7 +18,7 @@ Table 1 summarizes the domains, number of controls, ranges, and focus areas.
 |Physical       |         14         | A.7.1 – A.7.14 | Facility entry systems, asset protection, secure disposal, storage media handling, clear desk/clear screen, environmental protection. |
 |Technological  |         34         | A.8.1 – A.8.34 | Authentication, encryption, logging, monitoring, backups, vulnerability management, incident response, technical configuration. |
 
-*Table 1: Overview of ISO 27001:2022 Annex A Controls*
+_Table 1: Overview of ISO 27001:2022 Annex A Controls_
 
 > Note: Not all Annex A controls can be implemented in Wazuh. For example, physical security measures such as A.7.3 (Physical entry controls) are outside the scope of Wazuh monitoring. These controls are excluded from this dashboard design.
 
@@ -125,6 +125,8 @@ To improve usability, Annex A controls can be grouped into thematic dashboards. 
 |  | A.8.21	Security of Network Services |
 |  | A.8.23	Web Filtering |
 |  | A.8.26	Application Security Requirements |
+
+_Table 2: Thematic Dashboards Grouping_
 
 Steps:
 1.	Navigate to **Explore** → **Dashboards**.
