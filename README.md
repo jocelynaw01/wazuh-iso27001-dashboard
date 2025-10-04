@@ -27,7 +27,6 @@ Table 1 summarizes the domains, number of controls, ranges, and focus areas.
 - Installed Wazuh Dashboard (Kibana/OpenSearch Dashboards).
 - Familiarity with ISO 27001:2022 Annex A controls.
 
-
 ## 3.0 Tagging Rules for ISO 27001:2022
 Wazuh rules can be extended with ISO/IEC 27001:2022 compliance tags. These tags enable filtering, searching, and visualizing events by specific Annex A controls in the Wazuh Dashboard.
 
@@ -62,7 +61,7 @@ For example:
 - Use consistent tag naming (iso_27001_2022_X.X) across all rules.
 - A single rule can include multiple Annex A controls if applicable.
 - Apply tags at the most granular level (e.g., 8.15 instead of just 8).
-- Document mappings in an external Excel/CSV file for maintenance and audit traceability.\
+- Document mappings in an external Excel/CSV file for maintenance and audit traceability.
 
 ### 3.4 Verification
 After updating rules:
@@ -74,8 +73,6 @@ systemctl restart wazuh-manager
 ```
 rule.id: 5710 AND rule.groups: iso_27001_2022_5.15
 ```
-<img width="2400" height="1140" alt="image" src="https://github.com/user-attachments/assets/c20f83a4-6088-48d7-a0b8-0a899775ed75" />
-
 If the rule appears in the search results, the tagging was applied successfully.
 
 ## 4.0 Dashboard Design
@@ -86,7 +83,74 @@ For additional guidance on building visualizations, refer to the Wazuh official 
 Steps:
 1. Navigate to **Explore → Dashboards**.
 2. Click **+ Create Dashboard**, then **+ Create new**.
-<img width="2400" height="1400" alt="image" src="https://github.com/user-attachments/assets/16134d5f-20ef-4a88-bcb5-18163c9a6ee3" />
+3. In the **New Visualization** modal, select **Pie**, and choose the index pattern `wazuh-alerts-*`.
+4. Under **Metrics**, set **Aggregation** to **Count**.
+5. Click on **+Add** under **Buckets** and select `Split slices`, and use the following settings:
+- Aggregation is `Terms`.
+- Field is `rule.groups`.
+- Size is `10` (or adjust as needed).
+6. In the Advanced section, set a filter `iso_27001_2022.*`. This ensures only rules with ISO 27001:2022 tags are included.
+7. Click **Update**.
+8. **Save** the visualization with a clear title (e.g., ISO 27001:2022 Control Distribution).
+9. Repeat as needed to add complementary visualizations (e.g., bar charts by agent, time series by severity).
+10. **Save** the dashboard with a descriptive name (e.g., ISO/IEC 27001 Dashboard).
 
-3. In the **New Visualization** modal, select **Pie**, and choose the index pattern `wazuh-alerts-*`. 
+### 4.2 Dashboards by Control Category
+To improve usability, Annex A controls can be grouped into thematic dashboards. Table 2 shows an example grouping used in this project.
+| Dashboard Themes       | Annex A Controls |
+|:--------------|:-------------------|
+| Access Control & Identity Management | A.5.3 Segregation of Duties |
+|  | A.5.10 Acceptable Use of Information and Other Associated Assets |
+|  | A.5.15 Access Control |
+|  | A.5.18	Access Rights |
+| Cloud Control	 | A.5.23	Information Security for Use of Cloud Services |
+| Data Handling & Protection | A.5.14 Information Transfer |
+|  | A.8.10	Information Deletion |
+|  | A.8.12	Data Leakage Prevention |
+| Endpoint & Device Security | A.6.7 Remote Working |
+|  | A.8.1 User Endpoint Devices |
+|  | A.8.9 Configuration Management |
+|  | A.8.19 Installation of Software on Operational Systems |
+| Incident Control | A.5.26	Response to Information Security Incidents |
+| Monitor & Logging | A.5.22 Monitoring, Review and Change Management of Supplier Services |
+|  | A.8.15	Logging |
+|  | A.8.16	Monitoring Activities |
+|  | A.8.16	Monitoring Activities |
+|  | A.8.32	Change Management |
+|  | A.8.34	Protection of Information Systems during Audit Testing |
+| Threat Intelligence | A.5.7 Threat Intelligence |
+| Vulnerability & Technical Security Management | A.8.7	Protection Against Malware |
+|  | A.8.8 Management of Technical Vulnerabilities |
+|  | A.8.20	Networks Security |
+|  | A.8.21	Security of Network Services |
+|  | A.8.23	Web Filtering |
+|  | A.8.26	Application Security Requirements |
+
+Steps:
+1.	Navigate to **Explore** → **Dashboards**.
+2.	Click **+ Create Dashboard**, then **+ Create new**.
+3.	In the **New Visualization** modal, select **Pie**, and choose the index pattern `wazuh-alerts-*`.
+4.	Under **Metrics**, set **Aggregation** to **Count**.
+5.	Click on **+Add** under **Buckets** and select `Split slices`, and use the following settings:
+- Aggregation is `Terms`.
+- Field is `agent.name`.
+- Size is `10` (or adjust as needed).
+6.	Click **Update**.
+7.	Click **+ Add Filter**, and use the following settings:
+- Field is `rule.groups`.
+- Operator is `is one of`.
+- Values: List the ISO/IEC 27001 control tags for the category (e.g., `iso_27001_2022_8.15`, `iso_27001_2022_8.16`).
+8. Click **Save**.
+9. **Save** the visualization with a clear title (e.g., Access Control Events by Agent).
+10.	Continue adding visualizations (e.g., trends, top rules, severity distribution).
+11. Save the completed dashboard under the relevant category name (e.g. Access Control & Identity Management).
+
+## Appendix
+The detailed mapping between ISO 27001:2022 Annex A controls and Wazuh rules is maintained in a separate Excel file. This file enables filtering, sorting, and updating as the ruleset evolves. You can download it here: [ISO 27001:2022 - Wazuh Rules Mapping (Community)]([[https://pages.github.com/](https://documentation.wazuh.com/current/user-manual/wazuh-dashboard/creating-custom-dashboards.html)](https://docs.google.com/spreadsheets/d/1jtU_i-qM5rAHELA0m8ghDZiqDkbKiBE5/edit?usp=sharing&ouid=104104054315219906721&rtpof=true&sd=true))
+
+### Usage Instructions
+- **Filtering by Control**: Use Excel filters to display all rules mapped to a specific Annex A control.
+- **Filtering** by Rule: Select a rule ID to view the control(s) it supports.
+- **Audit Preparation**: Export the filtered dataset as CSV/PDF to provide evidence of compliance mappings.
+- **Maintenance**: Update the file when new Wazuh rules are introduced or when control mappings are revised.
 
