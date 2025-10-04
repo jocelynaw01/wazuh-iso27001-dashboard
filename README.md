@@ -77,7 +77,7 @@ If the rule appears in the search results, the tagging was applied successfully.
 
 ## 4.0 Dashboard Design
 Wazuh provides multiple visualization options to build dashboards that align events with ISO/IEC 27001:2022 controls. This section explains how to design dashboards for both an overall compliance overview and specific Annex A control categories.
-For additional guidance on building visualizations, refer to the Wazuh official documentation: [Creating custom dashboards]([https://pages.github.com/](https://documentation.wazuh.com/current/user-manual/wazuh-dashboard/creating-custom-dashboards.html)).
+For additional guidance on building visualizations, refer to the Wazuh official documentation: [Creating custom dashboards](https://documentation.wazuh.com/current/user-manual/wazuh-dashboard/creating-custom-dashboards.html).
 
 ### 4.1 Dashboard for Overall ISO 27001:2022 Coverage
 Steps:
@@ -146,7 +146,7 @@ Steps:
 11. Save the completed dashboard under the relevant category name (e.g. Access Control & Identity Management).
 
 ## Appendix
-The detailed mapping between ISO 27001:2022 Annex A controls and Wazuh rules is maintained in a separate Excel file. This file enables filtering, sorting, and updating as the ruleset evolves. You can download it here: [ISO 27001:2022 - Wazuh Rules Mapping (Community)]([[https://pages.github.com/](https://documentation.wazuh.com/current/user-manual/wazuh-dashboard/creating-custom-dashboards.html)](https://docs.google.com/spreadsheets/d/1jtU_i-qM5rAHELA0m8ghDZiqDkbKiBE5/edit?usp=sharing&ouid=104104054315219906721&rtpof=true&sd=true))
+The detailed mapping between ISO 27001:2022 Annex A controls and Wazuh rules is maintained in a separate Excel file. This file enables filtering, sorting, and updating as the ruleset evolves. You can download it here: [ISO 27001:2022 - Wazuh Rules Mapping (Community)](https://docs.google.com/spreadsheets/d/1jtU_i-qM5rAHELA0m8ghDZiqDkbKiBE5/edit?usp=sharing&ouid=104104054315219906721&rtpof=true&sd=true).
 
 ### Usage Instructions
 - **Filtering by Control**: Use Excel filters to display all rules mapped to a specific Annex A control.
